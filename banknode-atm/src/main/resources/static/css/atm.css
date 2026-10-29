@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+    --atm-primary: #0284c7;
+    --atm-primary-hover: #0369a1;
+    --atm-accent: #10b981;
+    --atm-dark: #0f172a;
+    --atm-surface: #1e293b;
+    --atm-card: #ffffff;
+    --atm-border: #e2e8f0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header del Cajero */
+.atm-navbar {
+    background: linear-gradient(135deg, #091a2e 0%, #0f2d4e 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #0284c7;
+}
+
+.atm-brand {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 1.35rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.atm-chip-icon {
+    color: #38bdf8;
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.4));
+}
+
+/* Tarjetas Principales */
+.atm-card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    border: 1px solid var(--atm-border);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+}
+
+.atm-card-header {
+    background: #f8fafc;
+    border-bottom: 1px solid var(--atm-border);
+    padding: 1.25rem 1.5rem;
+}
+
+/* Denominaciones de Billetes */
+.bill-card {
+    border-radius: 1rem;
+    border: 2px solid transparent;
+    padding: 1.25rem;
+    transition: all 0.2s ease-in-out;
+    background: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.bill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.bill-100k {
+    border-color: #3b82f6;
+    background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+}
+
+.bill-50k {
+    border-color: #8b5cf6;
+    background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);
+}
+
+.bill-20k {
+    border-color: #f59e0b;
+    background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+}
+
+.bill-10k {
+    border-color: #10b981;
+    background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
+}
+
+.bill-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.bill-count {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+/* Temporizador de Inactividad (180 segundos) */
+.timer-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background: #0f172a;
+    color: #38bdf8;
+    border: 1px solid #0284c7;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timer-warning {
+    background: #7f1d1d !important;
+    color: #fecaca !important;
+    border-color: #ef4444 !important;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.05); }
+}
+
+/* Teclado numérico PIN */
+.pin-display {
+    letter-spacing: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Botones de acción */
+.btn-atm-primary {
+    background: #0284c7;
+    border: none;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: all 0.2s;
+}
+
+.btn-atm-primary:hover {
+    background: #0369a1;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+}
+
+.btn-atm-danger {
+    background: #dc2626;
+    border: none;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+}
+
+.btn-atm-danger:hover {
+    background: #b91c1c;
+    color: #ffffff;
+}
+
+.saldo-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #059669;
+}

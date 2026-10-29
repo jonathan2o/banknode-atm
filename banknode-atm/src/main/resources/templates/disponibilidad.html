@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disponibilidad de Billetes | BankNode-ATM</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Estilos Personalizados ATM -->
+    <link rel="stylesheet" th:href="@{/css/atm.css}">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Barra Superior ATM -->
+    <header class="atm-navbar py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="atm-brand">
+                <i class="bi bi-credit-card-2-front-fill atm-chip-icon fs-3"></i>
+                <span>BankNode-ATM</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-success-subtle text-success border border-success px-3 py-2 rounded-pill fw-semibold">
+                    <i class="bi bi-check-circle-fill me-1"></i> EN LÍNEA
+                </span>
+                <a th:href="@{/login}" class="btn btn-outline-light btn-sm">Iniciar Sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal: Pantalla 1 -->
+    <main class="container my-auto py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+
+                <div class="atm-card p-4 p-md-5">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                        <div>
+                            <span class="badge bg-primary-subtle text-primary fw-bold text-uppercase px-3 py-2 rounded-pill mb-2">
+                                Pantalla 1: Estado del Cajero
+                            </span>
+                            <h1 class="h2 fw-bold mb-1">Disponibilidad de Billetes</h1>
+                            <p class="text-muted mb-0">Arqueo físico e inventario de efectivo disponible en este terminal.</p>
+                        </div>
+                        <div class="text-md-end mt-3 mt-md-0">
+                            <span class="text-muted small text-uppercase fw-semibold d-block">Efectivo Total Dispensable</span>
+                            <span class="saldo-display"
+                                  th:text="'$' + ${#numbers.formatDecimal(totalDisponible, 0, 'POINT', 0, 'COMMA')} + ' COP'">
+                                $0 COP
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Cuadrícula de Billetes por Denominación -->
+                    <div class="row g-4 mb-4">
+
+                        <!-- Billetes de $100.000 -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="bill-card bill-100k h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge bg-primary text-white px-2 py-1">Alta Denominación</span>
+                                    <i class="bi bi-cash-stack text-primary fs-3"></i>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="text-muted small d-block">Denominación</span>
+                                    <span class="bill-value text-primary">$100.000</span>
+                                </div>
+                                <div class="pt-2 border-top">
+                                    <span class="text-muted small d-block">Cantidad en Bodega</span>
+                                    <span class="bill-count text-dark" th:text="${inventario.get('$100.000')}">0</span>
+                                    <small class="text-muted">billetes</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Billetes de $50.000 -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="bill-card bill-50k h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge bg-purple text-white px-2 py-1" style="background:#8b5cf6;">Media-Alta</span>
+                                    <i class="bi bi-cash text-purple fs-3" style="color:#8b5cf6;"></i>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="text-muted small d-block">Denominación</span>
+                                    <span class="bill-value" style="color:#8b5cf6;">$50.000</span>
+                                </div>
+                                <div class="pt-2 border-top">
+                                    <span class="text-muted small d-block">Cantidad en Bodega</span>
+                                    <span class="bill-count text-dark" th:text="${inventario.get('$50.000')}">0</span>
+                                    <small class="text-muted">billetes</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Billetes de $20.000 -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="bill-card bill-20k h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge bg-warning text-dark px-2 py-1">Media</span>
+                                    <i class="bi bi-cash-coin text-warning fs-3"></i>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="text-muted small d-block">Denominación</span>
+                                    <span class="bill-value text-warning">$20.000</span>
+                                </div>
+                                <div class="pt-2 border-top">
+                                    <span class="text-muted small d-block">Cantidad en Bodega</span>
+                                    <span class="bill-count text-dark" th:text="${inventario.get('$20.000')}">0</span>
+                                    <small class="text-muted">billetes</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Billetes de $10.000 -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="bill-card bill-10k h-100 d-flex flex-column justify-content-between">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <span class="badge bg-success text-white px-2 py-1">Básica</span>
+                                    <i class="bi bi-currency-dollar text-success fs-3"></i>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="text-muted small d-block">Denominación</span>
+                                    <span class="bill-value text-success">$10.000</span>
+                                </div>
+                                <div class="pt-2 border-top">
+                                    <span class="text-muted small d-block">Cantidad en Bodega</span>
+                                    <span class="bill-count text-dark" th:text="${inventario.get('$10.000')}">0</span>
+                                    <small class="text-muted">billetes</small>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Cuadro Informativo de Reglas del Cajero -->
+                    <div class="alert alert-light border rounded-3 p-3 mb-4 d-flex align-items-center gap-3">
+                        <i class="bi bi-info-circle-fill text-primary fs-3"></i>
+                        <div>
+                            <strong class="d-block text-dark">Condiciones de Dispensación:</strong>
+                            <span class="text-muted small">
+                                El cajero dispensa retiros únicamente en múltiplos exactos de $10.000 COP optimizando la entrega desde billetes de mayor valor.
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Botón de Paso al Login -->
+                    <div class="text-center pt-2">
+                        <a th:href="@{/login}" class="btn btn-atm-primary btn-lg px-5 shadow-sm">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>
+                            <span>Acceder al Menú de Clientes</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-auto py-3 bg-white border-top text-center text-muted small">
+        <div class="container">
+            <strong>BankNode-ATM</strong> &copy; 2026 | Sistema Bancario Autónomo en Spring Boot 3 + H2
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/atm.js}"></script>
+</body>
+</html>
